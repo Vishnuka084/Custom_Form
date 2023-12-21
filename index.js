@@ -18,6 +18,9 @@ const bodyParser = require('body-parser');
 const port = process.env.SERVER_PORT | 3000;
 const app = express();
 
+//---------------------
+const userRouter = require('./routes/UserRouter');
+//---------------------
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -38,3 +41,6 @@ try{
 app.get('/test-api',(req,resp)=>{
     return resp.json({'message ':'server Started!'})
 })
+
+//-------------
+app.use('/api/v1/user',userRouter);
